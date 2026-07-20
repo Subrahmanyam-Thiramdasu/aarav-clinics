@@ -249,6 +249,279 @@ img{max-width:100%;display:block}
 .blog-card h2,.blog-card h3{font-size:1.18rem;margin-bottom:10px}
 .blog-card p{font-size:.94rem;flex:1;margin-bottom:16px}
 .blog-cats{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+/*==================================
+BLOG GRID
+==================================*/
+
+.blog-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+    gap:32px;
+}
+
+
+/*==================================
+CARD
+==================================*/
+
+.blog-post-card{
+
+    overflow:hidden;
+    border-radius:22px;
+    transition:.35s;
+    background:#fff;
+}
+
+.blog-post-card:hover{
+
+    transform:translateY(-8px);
+    box-shadow:0 24px 60px rgba(19,102,214,.18);
+}
+
+.blog-post-link{
+
+    display:block;
+    text-decoration:none;
+    color:inherit;
+}
+
+
+/*==================================
+IMAGE
+==================================*/
+
+.blog-post-image{
+
+    height:240px;
+    overflow:hidden;
+    position:relative;
+}
+
+.blog-post-image img{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.blog-post-card:hover img{
+
+    transform:scale(1.08);
+}
+
+.blog-post-image::after{
+
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,
+        rgba(0,0,0,.25),
+        transparent 45%);
+}
+
+
+/*==================================
+CONTENT
+==================================*/
+
+.blog-post-content{
+
+    padding:28px;
+}
+
+
+/*==================================
+TOP META
+==================================*/
+
+.blog-post-meta{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.blog-category{
+
+    background:#fff3eb;
+    color:var(--orange);
+    font-size:.78rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    padding:7px 14px;
+    border-radius:100px;
+}
+
+.blog-read-time{
+
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#6b7280;
+    font-size:.86rem;
+}
+
+
+/*==================================
+TITLE
+==================================*/
+
+.blog-post-content h2{
+
+    font-size:1.55rem;
+    line-height:1.35;
+    margin-bottom:14px;
+    transition:.3s;
+}
+
+.blog-post-card:hover h2{
+
+    color:var(--blue);
+}
+
+
+/*==================================
+DESCRIPTION
+==================================*/
+
+.blog-post-content p{
+
+    color:#64748b;
+    margin-bottom:24px;
+    line-height:1.8;
+}
+
+
+/*==================================
+REVIEW
+==================================*/
+
+.blog-review{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:#f7fbff;
+
+    margin-bottom:26px;
+}
+
+.review-icon{
+
+    width:28px;
+    height:28px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:var(--blue);
+
+    color:#fff;
+
+    font-size:.82rem;
+}
+
+.blog-review span{
+
+    font-size:.9rem;
+    color:#334155;
+}
+
+
+/*==================================
+BOTTOM
+==================================*/
+
+.blog-footer{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.blog-date{
+
+    color:#94a3b8;
+    font-size:.88rem;
+}
+
+.blog-read-more{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    color:var(--blue);
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.blog-post-card:hover .blog-read-more{
+
+    gap:14px;
+}
+
+
+/*==================================
+RESPONSIVE
+==================================*/
+
+@media(max-width:768px){
+
+.blog-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.blog-post-image{
+
+height:210px;
+
+}
+
+.blog-post-content{
+
+padding:22px;
+
+}
+
+.blog-post-content h2{
+
+font-size:1.3rem;
+
+}
+
+.blog-post-meta{
+
+flex-direction:column;
+align-items:flex-start;
+gap:12px;
+
+}
+
+.blog-footer{
+
+flex-direction:column;
+align-items:flex-start;
+gap:14px;
+
+}
+
+}
 
 /* cta band */
 .cta-band{background:linear-gradient(120deg,var(--blue-dark),var(--blue));color:#fff;border-radius:24px;margin:64px auto;max-width:var(--wrap);width:calc(100% - 48px)}
