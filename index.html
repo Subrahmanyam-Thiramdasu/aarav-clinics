@@ -404,8 +404,366 @@
     <a href="contact.html" class="fab fab-book" aria-label="Book appointment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></a>
   </div>
   <script src="script.js"></script>
-  
+
+  <!-- ===========================================
+     7-Day Physio Independence Program Popup
+=========================================== -->
+
+<div
+    class="physio-popup-overlay"
+    id="physioPopupOverlay"
+    aria-hidden="true">
+
+    <div
+        class="physio-popup"
+        id="physioPopup"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="physioPopupTitle"
+        aria-describedby="physioPopupDesc">
+
+        <!-- Close -->
+        <button
+            class="popup-close"
+            id="popupClose"
+            aria-label="Close popup">
+
+            &times;
+
+        </button>
+
+        <!-- Left Image -->
+        <div class="popup-image">
+
+            <img
+                src="assets/images/7-day-physio-popup1.png"
+                alt="Physiotherapist teaching a patient personalized home exercises at Aarav Clinics"
+                loading="eager">
+
+        </div>
+
+        <!-- Right Content -->
+        <div class="popup-content">
+
+<div class="popup-ribbon">
+    NEW
+</div>
+
+            <div class="popup-subtitle">
+
+                7-DAY PHYSIOTHERAPY PROGRAM
+
+            </div>
+
+            <h2 id="physioPopupTitle">
+
+                Travelling Long Distances
+                <br>
+                for Physiotherapy?
+
+            </h2>
+
+            <p id="physioPopupDesc">
+
+                Attend our structured seven-day program,
+                learn your personalized therapy routine correctly,
+                and continue your prescribed recovery plan
+                confidently at home.
+
+            </p>
+
+            <div class="popup-note">
+
+                <strong>Assessment is required.</strong>
+
+                Program suitability varies by condition.
+
+            </div>
+
+            <ul class="popup-highlights">
+
+                <li>
+                    Guided physiotherapy sessions
+                </li>
+
+                <li>
+                    Personalized exercise training
+                </li>
+
+                <li>
+                    Caregiver guidance when required
+                </li>
+
+                <li>
+                    Home recovery plan
+                </li>
+
+            </ul>
+
+            <div class="popup-actions">
+
+                <a
+                    href="7-day-physio-independence-program.html"
+                    class="btn btn-primary popup-btn"
+                    id="popupCTA">
+
+                    CLICK HERE TO KNOW MORE
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===========================================
+     END POPUP
+=========================================== -->
+  <script>
+    
+/*==================================================
+  AARAV 7 DAY PHYSIO POPUP
+==================================================*/
+
+(function () {
+
+    const POPUP_KEY = "aarav_physio_popup_last_seen";
+
+    const POPUP_DURATION = 24 * 60 * 60 * 1000;
+
+    const popupOverlay = document.getElementById("physioPopupOverlay");
+    const popup = document.getElementById("physioPopup");
+    const closeBtn = document.getElementById("popupClose");
+    const ctaBtn = document.getElementById("popupCTA");
+
+    if (!popupOverlay || !popup) return;
+
+    /*----------------------------------------------
+    Don't show on landing page
+    ----------------------------------------------*/
+
+    if (
+        window.location.pathname.includes(
+            "7-day-physio-independence-program"
+        )
+    ) {
+        return;
+    }
+
+    /*----------------------------------------------
+    Check localStorage
+    ----------------------------------------------*/
+
+    const lastSeen = localStorage.getItem(POPUP_KEY);
+
+    if (lastSeen) {
+
+        const diff = Date.now() - Number(lastSeen);
+
+        if (diff < POPUP_DURATION) {
+
+            return;
+
+        }
+
+    }
+
+    /*----------------------------------------------
+    Show Popup
+    ----------------------------------------------*/
+
+    function openPopup() {
+
+        popupOverlay.classList.add("active");
+
+        popupOverlay.setAttribute("aria-hidden", "false");
+
+        document.body.classList.add("popup-open");
+
+        closeBtn.focus();
+
+        trackPopupView();
+
+    }
+
+    /*----------------------------------------------
+    Close Popup
+    ----------------------------------------------*/
+
+    function closePopup() {
+
+        popupOverlay.classList.remove("active");
+
+        popupOverlay.setAttribute("aria-hidden", "true");
+
+        document.body.classList.remove("popup-open");
+
+        localStorage.setItem(
+            POPUP_KEY,
+            Date.now().toString()
+        );
+
+        trackPopupClose();
+
+    }
+
+    /*----------------------------------------------
+    Delay
+    ----------------------------------------------*/
+
+    window.addEventListener("load", function () {
+
+        setTimeout(openPopup, 1000);
+
+    });
+
+    /*----------------------------------------------
+    Close button
+    ----------------------------------------------*/
+
+    closeBtn.addEventListener("click", closePopup);
+
+    /*----------------------------------------------
+    Click outside
+    ----------------------------------------------*/
+
+    popupOverlay.addEventListener("click", function (e) {
+
+        if (e.target === popupOverlay) {
+
+            closePopup();
+
+        }
+
+    });
+
+    /*----------------------------------------------
+    ESC key
+    ----------------------------------------------*/
+
+    document.addEventListener("keydown", function (e) {
+
+        if (e.key === "Escape") {
+
+            if (popupOverlay.classList.contains("active")) {
+
+                closePopup();
+
+            }
+
+        }
+
+    });
+
+    /*----------------------------------------------
+    Focus Trap
+    ----------------------------------------------*/
+
+    popup.addEventListener("keydown", function (e) {
+
+        if (e.key !== "Tab") return;
+
+        const focusable = popup.querySelectorAll(
+            'button, a[href], input, textarea, select, [tabindex]:not([tabindex="-1"])'
+        );
+
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+
+            if (document.activeElement === first) {
+
+                e.preventDefault();
+
+                last.focus();
+
+            }
+
+        } else {
+
+            if (document.activeElement === last) {
+
+                e.preventDefault();
+
+                first.focus();
+
+            }
+
+        }
+
+    });
+
+    /*----------------------------------------------
+    CTA Click
+    ----------------------------------------------*/
+
+    ctaBtn.addEventListener("click", function () {
+
+        localStorage.setItem(
+            POPUP_KEY,
+            Date.now().toString()
+        );
+
+        trackPopupCTA();
+
+    });
+
+    /*==================================================
+      GA4 EVENTS
+    ==================================================*/
+
+    function trackPopupView() {
+
+        if (typeof gtag === "function") {
+
+            gtag("event", "popup_view", {
+
+                popup_name: "7_day_physio"
+
+            });
+
+        }
+
+    }
+
+    function trackPopupCTA() {
+
+        if (typeof gtag === "function") {
+
+            gtag("event", "popup_cta_click", {
+
+                popup_name: "7_day_physio"
+
+            });
+
+        }
+
+    }
+
+    function trackPopupClose() {
+
+        if (typeof gtag === "function") {
+
+            gtag("event", "popup_close", {
+
+                popup_name: "7_day_physio"
+
+            });
+
+        }
+
+    }
+
+})();
+
+  </script>
 </body>
 
-<!-- Mirrored from f7645422-a915-4676-bf6b-1fe2e03befe1.app-preview.com/site/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Jun 2026 12:44:05 GMT -->
 </html>

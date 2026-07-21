@@ -827,3 +827,730 @@ gap:14px;
 }
 
 }
+
+
+/*==========================================================
+  7 DAY PHYSIO POPUP
+==========================================================*/
+
+.physio-popup-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(12,27,52,.72);
+    backdrop-filter:blur(8px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    opacity:0;
+    visibility:hidden;
+    transition:.35s ease;
+    z-index:9999;
+}
+
+.physio-popup-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+body.popup-open{
+    overflow:hidden;
+}
+
+/*==========================================================
+POPUP
+==========================================================*/
+
+.physio-popup{
+
+    position:relative;
+
+    width:min(820px,100%);
+
+    background:#fff;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    display:grid;
+
+    grid-template-columns:42% 58%;
+
+    box-shadow:
+    0 40px 90px rgba(0,0,0,.28);
+
+    transform:translateY(35px) scale(.95);
+
+    transition:.35s ease;
+}
+
+.physio-popup-overlay.active .physio-popup{
+
+    transform:translateY(0) scale(1);
+
+}
+
+/*==========================================================
+IMAGE
+==========================================================*/
+
+.popup-image{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#eef5ff;
+
+}
+
+.popup-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.popup-image::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+    to top,
+    rgba(19,102,214,.08),
+    transparent
+    );
+
+}
+
+/*==========================================================
+CONTENT
+==========================================================*/
+
+.popup-content{
+
+    padding:42px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.popup-badge{
+
+    align-self:flex-start;
+
+    background:#FFF3E7;
+
+    color:#ff7a18;
+
+    font-family:var(--font-d);
+
+    font-size:.74rem;
+
+    font-weight:800;
+
+    letter-spacing:.08em;
+
+    padding:8px 14px;
+
+    border-radius:100px;
+
+    margin-bottom:12px;
+
+    text-transform:uppercase;
+
+}
+
+.popup-subtitle{
+
+    color:#1366D6;
+
+    font-weight:700;
+
+    font-size:.82rem;
+
+    letter-spacing:.14em;
+
+    text-transform:uppercase;
+
+    margin-bottom:18px;
+
+    font-family:var(--font-d);
+
+}
+
+.popup-content h2{
+
+    font-size:2.2rem;
+
+    line-height:1.15;
+
+    color:#0F1B2D;
+
+    margin-bottom:18px;
+
+}
+
+.popup-content p{
+
+    font-size:1rem;
+
+    line-height:1.8;
+
+    color:#556173;
+
+    margin-bottom:22px;
+
+}
+
+/*==========================================================
+NOTE
+==========================================================*/
+
+.popup-note{
+
+    background:#F6F9FF;
+
+    border-left:4px solid #1366D6;
+
+    padding:15px 18px;
+
+    border-radius:12px;
+
+    font-size:.92rem;
+
+    color:#4A5568;
+
+    margin-bottom:22px;
+
+}
+
+.popup-note strong{
+
+    display:block;
+
+    color:#0F1B2D;
+
+    margin-bottom:4px;
+
+}
+
+/*==========================================================
+LIST
+==========================================================*/
+
+.popup-highlights{
+
+    list-style:none;
+
+    display:grid;
+
+    gap:12px;
+
+    margin:0 0 28px;
+
+    padding:0;
+
+}
+
+.popup-highlights li{
+
+    position:relative;
+
+    padding-left:34px;
+
+    color:#2F3A4C;
+
+    line-height:1.5;
+
+}
+
+.popup-highlights li::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:2px;
+
+    width:22px;
+
+    height:22px;
+
+    border-radius:50%;
+
+    background:#EEF5FF;
+
+}
+
+.popup-highlights li::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:8px;
+
+    top:7px;
+
+    width:6px;
+
+    height:10px;
+
+    border-right:2px solid #1366D6;
+
+    border-bottom:2px solid #1366D6;
+
+    transform:rotate(45deg);
+
+}
+
+/*==========================================================
+BUTTON
+==========================================================*/
+
+.popup-actions{
+
+    margin-top:auto;
+
+}
+
+.popup-btn{
+
+position:relative;
+
+overflow:hidden;
+
+}
+.popup-btn::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-120%;
+
+width:70%;
+
+height:100%;
+
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.45),
+transparent
+);
+
+transform:skewX(-25deg);
+
+transition:1s;
+
+}
+
+.popup-btn:hover::before{
+
+left:160%;
+
+}
+.popup-highlights li{
+
+transition:.25s;
+
+}
+
+.popup-highlights li:hover{
+
+transform:translateX(6px);
+
+color:var(--blue);
+
+}
+.popup-close{
+
+transition:.3s;
+
+}
+
+.popup-close:hover{
+
+transform:rotate(180deg) scale(1.08);
+
+}
+/*==========================================================
+CLOSE
+==========================================================*/
+
+.popup-close{
+
+    position:absolute;
+
+    top:18px;
+
+    right:18px;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    color:#0F1B2D;
+
+    font-size:28px;
+
+    line-height:1;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.15);
+
+    transition:.25s;
+
+    z-index:20;
+
+}
+
+.popup-close:hover{
+
+    background:#1366D6;
+
+    color:#fff;
+
+    transform:rotate(90deg);
+
+}
+
+/*==========================================================
+HOVER
+==========================================================*/
+
+.popup-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.popup-image img{
+
+    transition:.45s ease;
+
+}
+
+.physio-popup:hover .popup-image img{
+
+    transform:scale(1.04);
+
+}
+
+/*==========================================================
+MOBILE
+==========================================================*/
+
+@media (max-width:900px){
+
+.physio-popup{
+
+grid-template-columns:1fr;
+
+max-width:520px;
+
+}
+
+.popup-image{
+
+height:260px;
+
+}
+
+.popup-content{
+
+padding:32px;
+
+}
+
+.popup-content h2{
+
+font-size:1.9rem;
+
+}
+
+}
+
+@media (max-width:600px){
+
+.physio-popup-overlay{
+
+padding:14px;
+
+}
+
+.physio-popup{
+
+border-radius:22px;
+
+}
+
+.popup-image{
+
+height:220px;
+
+}
+
+.popup-content{
+
+padding:26px;
+
+}
+
+.popup-content h2{
+
+font-size:1.6rem;
+
+}
+
+.popup-content p{
+
+font-size:.94rem;
+
+}
+
+.popup-btn{
+
+width:100%;
+
+}
+
+.popup-close{
+
+width:38px;
+
+height:38px;
+
+font-size:24px;
+
+top:14px;
+
+right:14px;
+
+}
+
+.popup-highlights{
+
+gap:10px;
+
+}
+
+.popup-note{
+
+font-size:.88rem;
+
+}
+
+}
+
+@media (max-width:420px){
+
+.popup-image{
+
+height:190px;
+
+}
+
+.popup-content{
+
+padding:22px;
+
+}
+
+.popup-content h2{
+
+font-size:1.45rem;
+
+}
+
+.popup-badge{
+
+font-size:.68rem;
+
+}
+
+.popup-subtitle{
+
+font-size:.72rem;
+
+}
+
+.popup-content p{
+
+font-size:.9rem;
+
+}
+
+}
+
+.popup-ribbon{
+
+position:absolute;
+
+top:22px;
+
+left:-42px;
+
+background:linear-gradient(135deg,#ff7a18,#ff9448);
+
+color:#fff;
+
+padding:10px 50px;
+
+font-weight:700;
+
+font-size:.75rem;
+
+font-family:var(--font-d);
+
+letter-spacing:.08em;
+
+transform:rotate(-45deg);
+
+box-shadow:0 10px 25px rgba(255,122,24,.35);
+
+z-index:10;
+
+}
+
+.physio-popup{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.physio-popup::before{
+
+content:"";
+
+position:absolute;
+
+width:420px;
+
+height:420px;
+
+background:radial-gradient(
+circle,
+rgba(19,102,214,.08),
+transparent 70%
+);
+
+right:-180px;
+
+top:-180px;
+
+pointer-events:none;
+
+}
+
+.popup-image{
+
+overflow:hidden;
+
+}
+
+.popup-image img{
+
+transition:1.2s ease;
+
+}
+
+.physio-popup:hover .popup-image img{
+
+transform:scale(1.06);
+
+}
+
+.popup-content>*{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+.physio-popup-overlay.active .popup-content>*{
+
+opacity:1;
+
+transform:none;
+
+}
+.popup-badge{
+transition:.4s .05s;
+}
+
+.popup-subtitle{
+transition:.4s .1s;
+}
+
+.popup-content h2{
+transition:.4s .15s;
+}
+
+.popup-content p{
+transition:.4s .22s;
+}
+
+.popup-note{
+transition:.4s .28s;
+}
+
+.popup-highlights{
+transition:.4s .35s;
+}
+
+.popup-btn{
+transition:.4s .45s;
+}
+
+@media(max-width:700px){
+
+.popup-image{
+
+height:180px;
+
+}
+
+.popup-content{
+
+padding:22px;
+
+}
+
+.popup-highlights{
+
+display:none;
+
+}
+
+}
