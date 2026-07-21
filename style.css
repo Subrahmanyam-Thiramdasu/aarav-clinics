@@ -58,12 +58,27 @@ img{max-width:100%;display:block}
 /* header */
 .site-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdrop-filter:saturate(150%) blur(14px);border-bottom:1px solid var(--line);transition:box-shadow .25s ease}
 .site-header.scrolled{box-shadow:0 8px 30px -18px rgba(15,27,45,.35)}
-.header-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-weight:800;font-size:1.25rem;color:var(--ink)}
+.header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:90px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    flex-shrink:0;
+}
 .brand-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--orange));color:#fff}
 .brand-mark svg{width:20px;height:20px}
 .brand-text strong{color:var(--blue)}
-.main-nav{display:flex;align-items:center;gap:6px}
+.main-nav{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-left:auto;
+}
 .main-nav>a,.has-drop>a{font-family:var(--font-d);font-weight:600;font-size:.95rem;color:var(--ink);padding:10px 12px;border-radius:10px;transition:color .15s,background .15s;display:inline-flex;align-items:center;gap:5px}
 .main-nav>a:hover,.has-drop>a:hover{color:var(--blue);background:var(--bg-tint)}
 .main-nav>a.active,.has-drop>a.active{color:var(--blue)}
@@ -611,4 +626,117 @@ gap:14px;
   .form-intro,.appt-form{padding:30px}
   .hero-inner{padding:90px 24px 70px}
   .footer-grid{grid-template-columns:1fr}
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.site-logo{
+    height:70px;
+    width:auto;
+    display:block;
+    object-fit:contain;
+}
+
+@media (max-width: 768px) {
+    .site-logo {
+        height: 48px;
+    }
+}
+
+@media (max-width:768px){
+
+.site-logo{
+    height:55px;
+}
+
+.header-inner{
+    height:72px;
+}
+
+}
+
+/* ==========================
+   Footer Logo
+========================== */
+
+.site-footer .brand{
+    display:block;
+    margin-bottom:20px;
+}
+
+/* .site-footer .site-logo{
+    display:block;
+    height:120px;
+    width:auto;
+    max-width:none;
+    object-fit:contain;
+} */
+/* Footer Logo */
+/* Footer Logo */
+.site-footer .site-logo{
+    display: block;
+    width: auto;
+    height: 95px;
+    border-radius: 16px;
+    background: #fff;
+    padding: 6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.18);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.site-footer .brand:hover .site-logo{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.25);
+}
+/* .site-footer .site-logo{
+    display: block;
+    width: auto;
+    height: 95px;
+    border-radius: 16px;     
+    overflow: hidden;
+} */
+
+/* Footer branding */
+.foot-brand{
+    max-width:360px;
+}
+
+.foot-brand p{
+    margin-top:12px;
+    margin-bottom:22px;
+    line-height:1.8;
+}
+
+.foot-contact{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.foot-contact a,
+.foot-contact span{
+    line-height:1.7;
+}
+
+@media (max-width:768px){
+
+.site-footer .brand{
+    display:flex;
+    justify-content:center;
+}
+
+.site-footer .site-logo{
+    height:70px;
+    max-width:200px;
+}
+
+.foot-brand{
+    max-width:100%;
+    text-align:center;
+}
+
 }
